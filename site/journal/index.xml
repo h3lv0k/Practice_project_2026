@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Журнал on Проектная практика</title>
+    <link>https://example.org/journal/</link>
+    <description>Recent content in Журнал on Проектная практика</description>
+    <generator>Hugo</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Sun, 26 Apr 2026 17:21:50 +0300</lastBuildDate>
+    <atom:link href="https://example.org/journal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Запись 3</title>
+      <link>https://example.org/journal/post-3/</link>
+      <pubDate>Sun, 26 Apr 2026 17:21:50 +0300</pubDate>
+      <guid>https://example.org/journal/post-3/</guid>
+      <description>&lt;p&gt;Завершаем первый этап. Проведено начальное тестирование функциональности.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Запись 1</title>
+      <link>https://example.org/journal/post-1/</link>
+      <pubDate>Sun, 26 Apr 2026 17:21:49 +0300</pubDate>
+      <guid>https://example.org/journal/post-1/</guid>
+      <description>&lt;p&gt;Сегодня мы начали работу над проектом. Составлен предварительный план.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Запись 2</title>
+      <link>https://example.org/journal/post-2/</link>
+      <pubDate>Sun, 26 Apr 2026 17:21:49 +0300</pubDate>
+      <guid>https://example.org/journal/post-2/</guid>
+      <description>&lt;p&gt;Продолжаем разработку. Основные модули системы уже спроектированы.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

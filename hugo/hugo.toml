@@ -1,0 +1,5 @@
+baseURL = 'https://example.org/'
+languageCode = 'ru-ru'
+title = 'Проектная практика'
+theme = 'ananke'
+publishDir = '../site'
