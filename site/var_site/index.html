@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ru-ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Space Invaders from Scratch | Space Invaders - Variative Report</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Реализация игры Space Invaders на C&#43;&#43; и OpenGL">
+    <meta name="generator" content="Hugo 0.160.1">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="./ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="./index.xml" rel="alternate" type="application/rss+xml" title="Space Invaders - Variative Report" />
+      <link href="./index.xml" rel="feed" type="application/rss+xml" title="Space Invaders - Variative Report" />
+      
+    
+
+    
+      <link rel="canonical" href="./index.html">
+    
+
+    
+    
+    <meta property="og:url" content="/index.html">
+  <meta property="og:site_name" content="Space Invaders - Variative Report">
+  <meta property="og:title" content="Space Invaders from Scratch">
+  <meta property="og:description" content="Этот сайт представляет собой отчет о выполнении вариативной части проектной практики.
+Проект: Space Invaders Целью работы была реализация классической аркадной игры с использованием языка C&#43;&#43; и графической библиотеки OpenGL без применения готовых движков.
+Ключевые особенности реализации: Программный рендеринг: Отрисовка каждого пикселя в CPU-буфер. Шейдеры: Использование GLSL для вывода буфера на экран. AABB Коллизии: Точная обработка столкновений пуль с врагами. Ретро-эстетика: Битмап-шрифты и спрайты в стиле 80-х. Подробности процесса разработки вы можете найти в разделе Отчет, а изучить реализацию — в разделе Исходный код.">
+  <meta property="og:locale" content="ru_ru">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Space Invaders from Scratch">
+  <meta itemprop="description" content="Этот сайт представляет собой отчет о выполнении вариативной части проектной практики.
+Проект: Space Invaders Целью работы была реализация классической аркадной игры с использованием языка C&#43;&#43; и графической библиотеки OpenGL без применения готовых движков.
+Ключевые особенности реализации: Программный рендеринг: Отрисовка каждого пикселя в CPU-буфер. Шейдеры: Использование GLSL для вывода буфера на экран. AABB Коллизии: Точная обработка столкновений пуль с врагами. Ретро-эстетика: Битмап-шрифты и спрайты в стиле 80-х. Подробности процесса разработки вы можете найти в разделе Отчет, а изучить реализацию — в разделе Исходный код.">
+  <meta itemprop="wordCount" content="83">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Space Invaders from Scratch">
+  <meta name="twitter:description" content="Этот сайт представляет собой отчет о выполнении вариативной части проектной практики.
+Проект: Space Invaders Целью работы была реализация классической аркадной игры с использованием языка C&#43;&#43; и графической библиотеки OpenGL без применения готовых движков.
+Ключевые особенности реализации: Программный рендеринг: Отрисовка каждого пикселя в CPU-буфер. Шейдеры: Использование GLSL для вывода буфера на экран. AABB Коллизии: Точная обработка столкновений пуль с врагами. Ретро-эстетика: Битмап-шрифты и спрайты в стиле 80-х. Подробности процесса разработки вы можете найти в разделе Отчет, а изучить реализацию — в разделе Исходный код.">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production is-home">
+    
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('/images/gameplay.png');">
+    
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="./index.html" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Space Invaders - Variative Report
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="./index.html" title="Главная page">
+              Главная
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="./report.html" title="Отчет page">
+              Отчет
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="./code.html" title="Исходный код page">
+              Исходный код
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          Space Invaders from Scratch
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray">
+    <p>Этот сайт представляет собой отчет о выполнении вариативной части проектной практики.</p>
+<p><img src="./images/gameplay.png" alt="Gameplay"></p>
+<h3 id="проект-space-invaders">Проект: Space Invaders</h3>
+<p>Целью работы была реализация классической аркадной игры с использованием языка C++ и графической библиотеки OpenGL без применения готовых движков.</p>
+<h4 id="ключевые-особенности-реализации">Ключевые особенности реализации:</h4>
+<ul>
+<li><strong>Программный рендеринг</strong>: Отрисовка каждого пикселя в CPU-буфер.</li>
+<li><strong>Шейдеры</strong>: Использование GLSL для вывода буфера на экран.</li>
+<li><strong>AABB Коллизии</strong>: Точная обработка столкновений пуль с врагами.</li>
+<li><strong>Ретро-эстетика</strong>: Битмап-шрифты и спрайты в стиле 80-х.</li>
+</ul>
+<p>Подробности процесса разработки вы можете найти в разделе <strong><a href="./report.html">Отчет</a></strong>, а изучить реализацию — в разделе <strong><a href="./code.html">Исходный код</a></strong>.</p>
+
+  </article>
+
+  
+  
+  
+  
+  
+
+  
+    <div class="pa3 pa4-ns w-100 w-70-ns center">
+      
+
+      <section class="w-100 mw8">
+        
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="./code.html" class="color-inherit dim link">
+            Исходный код проекта
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <p>Ниже приведен полный исходный код игры <strong>Space Invaders</strong>, реализованный на C++ с использованием OpenGL (GLFW/GLEW).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;GL/glew.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;GLFW/glfw3.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdint&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kBufferWidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">640</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kBufferHeight <span style="color:#f92672">=</span> <span style="color:#ae81ff">480</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienRows <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienCols <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienCount <span style="color:#f92672">=</span> kAlienRows <span style="color:#f92672">*</span> kAlienCols;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kMaxBullets <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kPlayerSpeed <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kBulletSpeed <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienAnimSpeed <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienMoveDelay <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienStep <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kAlienDrop <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> kDeathFrames <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Buffer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> width;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> height;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span> data;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Sprite</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> width;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> height;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">*</span> data;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">AlienType</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">uint8_t</span> {
+</span></span><span style="display:flex;"><span>    ALIEN_NONE <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    ALIEN_A <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    ALIEN_B <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    ALIEN_C <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Alien</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y;
+</span></span><span style="display:flex;"><span>    AlienType type;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> death_timer;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Player</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> life;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Bullet</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> dir;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> active;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Game</span> {
+</span></span><span style="display:flex;"><span>    Alien aliens[kAlienCount];
+</span></span><span style="display:flex;"><span>    Bullet bullets[kMaxBullets];
+</span></span><span style="display:flex;"><span>    Player player;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> score;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> anim_tick;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> alien_dir;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> alien_move_tick;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">InputState</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> left;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> right;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> fire_requested;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>InputState g_input{};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> <span style="color:#a6e22e">rgba_to_u32</span>(<span style="color:#66d9ef">uint8_t</span> r, <span style="color:#66d9ef">uint8_t</span> g, <span style="color:#66d9ef">uint8_t</span> b, <span style="color:#66d9ef">uint8_t</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">255</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(r) <span style="color:#f92672">|</span> (<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(g) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>           (<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(b) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">|</span> (<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(a) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">24</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer_clear</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">uint32_t</span> color) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>fill(buffer.data.begin(), buffer.data.end(), color);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer_draw_sprite</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> sprite, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">uint32_t</span> color) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> sy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; sy <span style="color:#f92672">&lt;</span> sprite.height; <span style="color:#f92672">++</span>sy) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> by <span style="color:#f92672">=</span> y <span style="color:#f92672">+</span> sy;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (by <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> by <span style="color:#f92672">&gt;=</span> buffer.height) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> sx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; sx <span style="color:#f92672">&lt;</span> sprite.width; <span style="color:#f92672">++</span>sx) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> bx <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> sx;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (bx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> bx <span style="color:#f92672">&gt;=</span> buffer.width) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (sprite.data[sy <span style="color:#f92672">*</span> sprite.width <span style="color:#f92672">+</span> sx] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            buffer.data[by <span style="color:#f92672">*</span> buffer.width <span style="color:#f92672">+</span> bx] <span style="color:#f92672">=</span> color;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer_draw_hline</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">uint32_t</span> color) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> y <span style="color:#f92672">&gt;=</span> buffer.height) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> start <span style="color:#f92672">=</span> x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> end <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> w;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (end <span style="color:#f92672">&gt;</span> buffer.width) {
+</span></span><span style="display:flex;"><span>        end <span style="color:#f92672">=</span> buffer.width;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> bx <span style="color:#f92672">=</span> start; bx <span style="color:#f92672">&lt;</span> end; <span style="color:#f92672">++</span>bx) {
+</span></span><span style="display:flex;"><span>        buffer.data[y <span style="color:#f92672">*</span> buffer.width <span style="color:#f92672">+</span> bx] <span style="color:#f92672">=</span> color;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">sprite_overlap</span>(<span style="color:#66d9ef">int</span> ax, <span style="color:#66d9ef">int</span> ay, <span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> a, <span style="color:#66d9ef">int</span> bx, <span style="color:#66d9ef">int</span> by, <span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> b) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> left_a <span style="color:#f92672">=</span> ax;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> right_a <span style="color:#f92672">=</span> ax <span style="color:#f92672">+</span> a.width;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> top_a <span style="color:#f92672">=</span> ay;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> bottom_a <span style="color:#f92672">=</span> ay <span style="color:#f92672">+</span> a.height;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> left_b <span style="color:#f92672">=</span> bx;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> right_b <span style="color:#f92672">=</span> bx <span style="color:#f92672">+</span> b.width;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> top_b <span style="color:#f92672">=</span> by;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> bottom_b <span style="color:#f92672">=</span> by <span style="color:#f92672">+</span> b.height;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (left_a <span style="color:#f92672">&gt;=</span> right_b <span style="color:#f92672">||</span> left_b <span style="color:#f92672">&gt;=</span> right_a) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (top_a <span style="color:#f92672">&gt;=</span> bottom_b <span style="color:#f92672">||</span> top_b <span style="color:#f92672">&gt;=</span> bottom_a) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">error_callback</span>(<span style="color:#66d9ef">int</span> error, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> description) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>fprintf(stderr, <span style="color:#e6db74">&#34;GLFW error %d: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, error, description);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">key_callback</span>(GLFWwindow<span style="color:#f92672">*</span> window, <span style="color:#66d9ef">int</span> key, <span style="color:#66d9ef">int</span> scancode, <span style="color:#66d9ef">int</span> action, <span style="color:#66d9ef">int</span> mods) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)scancode;
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)mods;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (key <span style="color:#f92672">==</span> GLFW_KEY_ESCAPE <span style="color:#f92672">&amp;&amp;</span> action <span style="color:#f92672">==</span> GLFW_PRESS) {
+</span></span><span style="display:flex;"><span>        glfwSetWindowShouldClose(window, GLFW_TRUE);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (key <span style="color:#f92672">==</span> GLFW_KEY_LEFT) {
+</span></span><span style="display:flex;"><span>        g_input.left <span style="color:#f92672">=</span> (action <span style="color:#f92672">!=</span> GLFW_RELEASE);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (key <span style="color:#f92672">==</span> GLFW_KEY_RIGHT) {
+</span></span><span style="display:flex;"><span>        g_input.right <span style="color:#f92672">=</span> (action <span style="color:#f92672">!=</span> GLFW_RELEASE);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (key <span style="color:#f92672">==</span> GLFW_KEY_SPACE) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (action <span style="color:#f92672">==</span> GLFW_RELEASE) {
+</span></span><span style="display:flex;"><span>            g_input.fire_requested <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">build_sprite_from_strings</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> rows, <span style="color:#66d9ef">int</span> width, <span style="color:#66d9ef">int</span> height, <span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">*</span> out) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; y <span style="color:#f92672">&lt;</span> height; <span style="color:#f92672">++</span>y) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; x <span style="color:#f92672">&lt;</span> width; <span style="color:#f92672">++</span>x) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> rows[y][x];
+</span></span><span style="display:flex;"><span>            out[y <span style="color:#f92672">*</span> width <span style="color:#f92672">+</span> x] <span style="color:#f92672">=</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;X&#39;</span>) <span style="color:#f92672">?</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 5x7 ASCII font for characters 32-126.
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span> kFont5x7[<span style="color:#ae81ff">95</span>][<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// Space
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x5F</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// !
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x07</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x07</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// &#34;
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x14</span>}, <span style="color:#75715e">// #
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x24</span>, <span style="color:#ae81ff">0x2A</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x2A</span>, <span style="color:#ae81ff">0x12</span>}, <span style="color:#75715e">// $
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0x13</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x62</span>}, <span style="color:#75715e">// %
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x55</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x50</span>}, <span style="color:#75715e">// &amp;
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x05</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// &#39;
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// (
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// )
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x14</span>}, <span style="color:#75715e">// *
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>}, <span style="color:#75715e">// +
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// ,
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>}, <span style="color:#75715e">// -
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x60</span>, <span style="color:#ae81ff">0x60</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// .
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x02</span>}, <span style="color:#75715e">// /
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x3E</span>}, <span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x42</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x42</span>, <span style="color:#ae81ff">0x61</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x46</span>}, <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x4B</span>, <span style="color:#ae81ff">0x31</span>}, <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x12</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x10</span>}, <span style="color:#75715e">// 4
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x27</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x39</span>}, <span style="color:#75715e">// 5
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x4A</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x30</span>}, <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x71</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x05</span>, <span style="color:#ae81ff">0x03</span>}, <span style="color:#75715e">// 7
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x36</span>}, <span style="color:#75715e">// 8
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x06</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0x1E</span>}, <span style="color:#75715e">// 9
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// :
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x56</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// ;
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// &lt;
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>}, <span style="color:#75715e">// =
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x08</span>}, <span style="color:#75715e">// &gt;
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x06</span>}, <span style="color:#75715e">// ?
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x32</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x79</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x3E</span>}, <span style="color:#75715e">// @
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7E</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x7E</span>}, <span style="color:#75715e">// A
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x36</span>}, <span style="color:#75715e">// B
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x22</span>}, <span style="color:#75715e">// C
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x1C</span>}, <span style="color:#75715e">// D
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x41</span>}, <span style="color:#75715e">// E
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x01</span>}, <span style="color:#75715e">// F
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x7A</span>}, <span style="color:#75715e">// G
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x7F</span>}, <span style="color:#75715e">// H
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// I
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0x01</span>}, <span style="color:#75715e">// J
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x41</span>}, <span style="color:#75715e">// K
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>}, <span style="color:#75715e">// L
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x7F</span>}, <span style="color:#75715e">// M
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x7F</span>}, <span style="color:#75715e">// N
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x3E</span>}, <span style="color:#75715e">// O
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x06</span>}, <span style="color:#75715e">// P
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x5E</span>}, <span style="color:#75715e">// Q
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x19</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0x46</span>}, <span style="color:#75715e">// R
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x46</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x31</span>}, <span style="color:#75715e">// S
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>}, <span style="color:#75715e">// T
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x3F</span>}, <span style="color:#75715e">// U
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x1F</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x1F</span>}, <span style="color:#75715e">// V
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x7F</span>}, <span style="color:#75715e">// W
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x63</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x63</span>}, <span style="color:#75715e">// X
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x78</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x03</span>}, <span style="color:#75715e">// Y
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x61</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x43</span>}, <span style="color:#75715e">// Z
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// [
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x20</span>}, <span style="color:#75715e">// \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    {0x00, 0x41, 0x41, 0x7F, 0x00}, // ]
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x04</span>}, <span style="color:#75715e">// ^
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>}, <span style="color:#75715e">// _
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// `
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x78</span>}, <span style="color:#75715e">// a
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x38</span>}, <span style="color:#75715e">// b
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x20</span>}, <span style="color:#75715e">// c
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x7F</span>}, <span style="color:#75715e">// d
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x18</span>}, <span style="color:#75715e">// e
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x7E</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>}, <span style="color:#75715e">// f
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x3E</span>}, <span style="color:#75715e">// g
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x78</span>}, <span style="color:#75715e">// h
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x7D</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// i
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x3D</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// j
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// k
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// l
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x78</span>}, <span style="color:#75715e">// m
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x78</span>}, <span style="color:#75715e">// n
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x38</span>}, <span style="color:#75715e">// o
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x08</span>}, <span style="color:#75715e">// p
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0x7C</span>}, <span style="color:#75715e">// q
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x08</span>}, <span style="color:#75715e">// r
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x20</span>}, <span style="color:#75715e">// s
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x20</span>}, <span style="color:#75715e">// t
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x7C</span>}, <span style="color:#75715e">// u
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x1C</span>}, <span style="color:#75715e">// v
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x3C</span>}, <span style="color:#75715e">// w
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0x44</span>}, <span style="color:#75715e">// x
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0x3C</span>}, <span style="color:#75715e">// y
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x4C</span>, <span style="color:#ae81ff">0x44</span>}, <span style="color:#75715e">// z
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// {
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// |
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x00</span>}, <span style="color:#75715e">// }
+</span></span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x08</span>}  <span style="color:#75715e">// ~
+</span></span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer_draw_char</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">char</span> c, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">uint32_t</span> color) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">||</span> c <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">126</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">*</span> glyph <span style="color:#f92672">=</span> kFont5x7[c <span style="color:#f92672">-</span> <span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; col <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; <span style="color:#f92672">++</span>col) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint8_t</span> bits <span style="color:#f92672">=</span> glyph[col];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; row <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span>; <span style="color:#f92672">++</span>row) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (bits <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> row)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">int</span> px <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> col;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">int</span> py <span style="color:#f92672">=</span> y <span style="color:#f92672">+</span> row;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (px <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> px <span style="color:#f92672">&lt;</span> buffer.width <span style="color:#f92672">&amp;&amp;</span> py <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> py <span style="color:#f92672">&lt;</span> buffer.height) {
+</span></span><span style="display:flex;"><span>                    buffer.data[py <span style="color:#f92672">*</span> buffer.width <span style="color:#f92672">+</span> px] <span style="color:#f92672">=</span> color;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer_draw_text</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> text, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">uint32_t</span> color) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> cursor <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> text; <span style="color:#f92672">*</span>p; <span style="color:#f92672">++</span>p) {
+</span></span><span style="display:flex;"><span>        buffer_draw_char(buffer, <span style="color:#f92672">*</span>p, cursor, y, color);
+</span></span><span style="display:flex;"><span>        cursor <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer_draw_number</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">int</span> value, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">uint32_t</span> color) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">16</span>];
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>snprintf(buf, <span style="color:#66d9ef">sizeof</span>(buf), <span style="color:#e6db74">&#34;%d&#34;</span>, value);
+</span></span><span style="display:flex;"><span>    buffer_draw_text(buffer, buf, x, y, color);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienA0[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienA1[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienB0[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienB1[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienC0[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienC1[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kAlienDead[<span style="color:#ae81ff">11</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kPlayerSprite[<span style="color:#ae81ff">13</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> kBulletSprite[<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sprite g_alien_a_0{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienA0};
+</span></span><span style="display:flex;"><span>Sprite g_alien_a_1{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienA1};
+</span></span><span style="display:flex;"><span>Sprite g_alien_b_0{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienB0};
+</span></span><span style="display:flex;"><span>Sprite g_alien_b_1{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienB1};
+</span></span><span style="display:flex;"><span>Sprite g_alien_c_0{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienC0};
+</span></span><span style="display:flex;"><span>Sprite g_alien_c_1{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienC1};
+</span></span><span style="display:flex;"><span>Sprite g_alien_dead{<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienDead};
+</span></span><span style="display:flex;"><span>Sprite g_player{<span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">8</span>, kPlayerSprite};
+</span></span><span style="display:flex;"><span>Sprite g_bullet{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, kBulletSprite};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init_sprites</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_a_0[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..X.....X..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XXXXX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXX..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XX.XXX.XX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X.XXXXXXX.X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X.X.....X.X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XX.XX...&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_a_1[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..X.....X..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XXXXX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXX..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XX.XXX.XX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.X.XXXXX.X.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..X.....X..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.X..XXX..X.&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_b_0[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XXXXX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXX..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XX.XXX.XX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXX.....XXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XX.XXXXX.XX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X.X.....X.X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XX...XX..&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_b_1[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XXXXX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXX..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XX.XXX.XX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XX.......XX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X.XXXXXXX.X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..X.....X..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.X..XXX..X.&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_c_0[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XX.XX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXXX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XXXXXXXXX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XXX.XXX.XX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X.XX.XX.XX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X.........X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XX...XX..&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_c_1[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XX.XX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXXX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XXXXXXXXX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XXX.XXX.XX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XX.XX.XX.X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..X.....X..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.X..XXX..X.&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> alien_dead[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...........&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...X...X...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;....X.X....&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXX.XXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;....X.X....&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...X...X...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...........&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...........&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> player[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;....XXXXX....&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;...XXXXXXX...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..XXXXXXXXX..&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;.XXX.XXX.XXX.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXXXXXXXXXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXXX..X..XXXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XXX.......XXX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;XX.........XX&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> bullet[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;X&#34;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_a_0, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienA0);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_a_1, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienA1);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_b_0, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienB0);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_b_1, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienB1);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_c_0, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienC0);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_c_1, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienC1);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(alien_dead, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>, kAlienDead);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(player, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">8</span>, kPlayerSprite);
+</span></span><span style="display:flex;"><span>    build_sprite_from_strings(bullet, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, kBulletSprite);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> alien_frame(AlienType type, <span style="color:#66d9ef">int</span> anim_tick) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> toggle <span style="color:#f92672">=</span> (anim_tick <span style="color:#f92672">/</span> kAlienAnimSpeed) <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> (type) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> ALIEN_A:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> toggle <span style="color:#f92672">?</span> g_alien_a_0 : g_alien_a_1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> ALIEN_B:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> toggle <span style="color:#f92672">?</span> g_alien_b_0 : g_alien_b_1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> ALIEN_C:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> toggle <span style="color:#f92672">?</span> g_alien_c_0 : g_alien_c_1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> g_alien_a_0;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">score_for_type</span>(AlienType type) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> (type) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> ALIEN_A:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">40</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> ALIEN_B:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> ALIEN_C:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init_game</span>(Game<span style="color:#f92672">&amp;</span> game) {
+</span></span><span style="display:flex;"><span>    game.score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    game.anim_tick <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    game.alien_dir <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    game.alien_move_tick <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    game.player.life <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>    game.player.x <span style="color:#f92672">=</span> (kBufferWidth <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">-</span> (g_player.width <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    game.player.y <span style="color:#f92672">=</span> kBufferHeight <span style="color:#f92672">-</span> <span style="color:#ae81ff">40</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kMaxBullets; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        game.bullets[i].active <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> start_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> start_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> spacing_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> spacing_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; row <span style="color:#f92672">&lt;</span> kAlienRows; <span style="color:#f92672">++</span>row) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; col <span style="color:#f92672">&lt;</span> kAlienCols; <span style="color:#f92672">++</span>col) {
+</span></span><span style="display:flex;"><span>            Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[index<span style="color:#f92672">++</span>];
+</span></span><span style="display:flex;"><span>            alien.x <span style="color:#f92672">=</span> start_x <span style="color:#f92672">+</span> col <span style="color:#f92672">*</span> spacing_x;
+</span></span><span style="display:flex;"><span>            alien.y <span style="color:#f92672">=</span> start_y <span style="color:#f92672">+</span> row <span style="color:#f92672">*</span> spacing_y;
+</span></span><span style="display:flex;"><span>            alien.death_timer <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (row <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>                alien.type <span style="color:#f92672">=</span> ALIEN_A;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (row <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>                alien.type <span style="color:#f92672">=</span> ALIEN_B;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                alien.type <span style="color:#f92672">=</span> ALIEN_C;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">spawn_bullet</span>(Game<span style="color:#f92672">&amp;</span> game, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> dir) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kMaxBullets; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        Bullet<span style="color:#f92672">&amp;</span> bullet <span style="color:#f92672">=</span> game.bullets[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>bullet.active) {
+</span></span><span style="display:flex;"><span>            bullet.active <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>            bullet.x <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>            bullet.y <span style="color:#f92672">=</span> y;
+</span></span><span style="display:flex;"><span>            bullet.dir <span style="color:#f92672">=</span> dir;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update_game</span>(Game<span style="color:#f92672">&amp;</span> game) {
+</span></span><span style="display:flex;"><span>    game.anim_tick<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    game.alien_move_tick<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> vx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (g_input.left) {
+</span></span><span style="display:flex;"><span>        vx <span style="color:#f92672">-=</span> kPlayerSpeed;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (g_input.right) {
+</span></span><span style="display:flex;"><span>        vx <span style="color:#f92672">+=</span> kPlayerSpeed;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    game.player.x <span style="color:#f92672">+=</span> vx;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (game.player.x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        game.player.x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (game.player.x <span style="color:#f92672">+</span> g_player.width <span style="color:#f92672">&gt;=</span> kBufferWidth) {
+</span></span><span style="display:flex;"><span>        game.player.x <span style="color:#f92672">=</span> kBufferWidth <span style="color:#f92672">-</span> g_player.width;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (g_input.fire_requested) {
+</span></span><span style="display:flex;"><span>        g_input.fire_requested <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> bx <span style="color:#f92672">=</span> game.player.x <span style="color:#f92672">+</span> (g_player.width <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> by <span style="color:#f92672">=</span> game.player.y <span style="color:#f92672">-</span> g_bullet.height;
+</span></span><span style="display:flex;"><span>        spawn_bullet(game, bx, by, <span style="color:#f92672">-</span>kBulletSpeed);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (game.alien_move_tick <span style="color:#f92672">&gt;=</span> kAlienMoveDelay) {
+</span></span><span style="display:flex;"><span>        game.alien_move_tick <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> left <span style="color:#f92672">=</span> kBufferWidth;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> any <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kAlienCount; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (alien.type <span style="color:#f92672">==</span> ALIEN_NONE) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> sprite <span style="color:#f92672">=</span> alien_frame(alien.type, game.anim_tick);
+</span></span><span style="display:flex;"><span>            left <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>min(left, alien.x);
+</span></span><span style="display:flex;"><span>            right <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>max(right, alien.x <span style="color:#f92672">+</span> sprite.width);
+</span></span><span style="display:flex;"><span>            any <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (any) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> next_left <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> game.alien_dir <span style="color:#f92672">*</span> kAlienStep;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> next_right <span style="color:#f92672">=</span> right <span style="color:#f92672">+</span> game.alien_dir <span style="color:#f92672">*</span> kAlienStep;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">bool</span> hit_edge <span style="color:#f92672">=</span> next_left <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">||</span> next_right <span style="color:#f92672">&gt;</span> (kBufferWidth <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (hit_edge) {
+</span></span><span style="display:flex;"><span>                game.alien_dir <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>game.alien_dir;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kAlienCount; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>                    Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[i];
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (alien.type <span style="color:#f92672">==</span> ALIEN_NONE) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    alien.y <span style="color:#f92672">+=</span> kAlienDrop;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kAlienCount; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>                    Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[i];
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (alien.type <span style="color:#f92672">==</span> ALIEN_NONE) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    alien.x <span style="color:#f92672">+=</span> game.alien_dir <span style="color:#f92672">*</span> kAlienStep;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kMaxBullets; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        Bullet<span style="color:#f92672">&amp;</span> bullet <span style="color:#f92672">=</span> game.bullets[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>bullet.active) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        bullet.y <span style="color:#f92672">+=</span> bullet.dir;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (bullet.y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> bullet.y <span style="color:#f92672">&gt;</span> kBufferHeight) {
+</span></span><span style="display:flex;"><span>            bullet.active <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kMaxBullets; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        Bullet<span style="color:#f92672">&amp;</span> bullet <span style="color:#f92672">=</span> game.bullets[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>bullet.active) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; a <span style="color:#f92672">&lt;</span> kAlienCount; <span style="color:#f92672">++</span>a) {
+</span></span><span style="display:flex;"><span>            Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[a];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (alien.type <span style="color:#f92672">==</span> ALIEN_NONE) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> sprite <span style="color:#f92672">=</span> alien_frame(alien.type, game.anim_tick);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (sprite_overlap(bullet.x, bullet.y, g_bullet, alien.x, alien.y, sprite)) {
+</span></span><span style="display:flex;"><span>                bullet.active <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>                alien.death_timer <span style="color:#f92672">=</span> kDeathFrames;
+</span></span><span style="display:flex;"><span>                game.score <span style="color:#f92672">+=</span> score_for_type(alien.type);
+</span></span><span style="display:flex;"><span>                alien.type <span style="color:#f92672">=</span> ALIEN_NONE;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; a <span style="color:#f92672">&lt;</span> kAlienCount; <span style="color:#f92672">++</span>a) {
+</span></span><span style="display:flex;"><span>        Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[a];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (alien.death_timer <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            alien.death_timer<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">render_game</span>(Buffer<span style="color:#f92672">&amp;</span> buffer, <span style="color:#66d9ef">const</span> Game<span style="color:#f92672">&amp;</span> game) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> black <span style="color:#f92672">=</span> rgba_to_u32(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> green <span style="color:#f92672">=</span> rgba_to_u32(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">40</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> white <span style="color:#f92672">=</span> rgba_to_u32(<span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">230</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> red <span style="color:#f92672">=</span> rgba_to_u32(<span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">60</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    buffer_clear(buffer, black);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    buffer_draw_text(buffer, <span style="color:#e6db74">&#34;SCORE&#34;</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">10</span>, white);
+</span></span><span style="display:flex;"><span>    buffer_draw_number(buffer, game.score, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">10</span>, white);
+</span></span><span style="display:flex;"><span>    buffer_draw_text(buffer, <span style="color:#e6db74">&#34;CREDIT 00&#34;</span>, kBufferWidth <span style="color:#f92672">-</span> <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">10</span>, white);
+</span></span><span style="display:flex;"><span>    buffer_draw_hline(buffer, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">30</span>, kBufferWidth <span style="color:#f92672">-</span> <span style="color:#ae81ff">20</span>, white);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kAlienCount; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> Alien<span style="color:#f92672">&amp;</span> alien <span style="color:#f92672">=</span> game.aliens[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (alien.type <span style="color:#f92672">!=</span> ALIEN_NONE) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> Sprite<span style="color:#f92672">&amp;</span> sprite <span style="color:#f92672">=</span> alien_frame(alien.type, game.anim_tick);
+</span></span><span style="display:flex;"><span>            buffer_draw_sprite(buffer, sprite, alien.x, alien.y, green);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (alien.death_timer <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            buffer_draw_sprite(buffer, g_alien_dead, alien.x, alien.y, red);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    buffer_draw_sprite(buffer, g_player, game.player.x, game.player.y, green);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> kMaxBullets; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> Bullet<span style="color:#f92672">&amp;</span> bullet <span style="color:#f92672">=</span> game.bullets[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>bullet.active) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        buffer_draw_sprite(buffer, g_bullet, bullet.x, bullet.y, white);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GLuint <span style="color:#a6e22e">compile_shader</span>(GLenum type, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> source) {
+</span></span><span style="display:flex;"><span>    GLuint shader <span style="color:#f92672">=</span> glCreateShader(type);
+</span></span><span style="display:flex;"><span>    glShaderSource(shader, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>source, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    glCompileShader(shader);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLint ok <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    glGetShaderiv(shader, GL_COMPILE_STATUS, <span style="color:#f92672">&amp;</span>ok);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ok) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">char</span> log[<span style="color:#ae81ff">1024</span>];
+</span></span><span style="display:flex;"><span>        glGetShaderInfoLog(shader, <span style="color:#66d9ef">sizeof</span>(log), <span style="color:#66d9ef">nullptr</span>, log);
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>fprintf(stderr, <span style="color:#e6db74">&#34;Shader compile error: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, log);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> shader;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GLuint <span style="color:#a6e22e">create_program</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> vertex_src <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;#version 330 core</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;out vec2 v_uv;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;void main() {</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  vec2 pos = vec2(-1.0, -1.0);</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  if (gl_VertexID == 1) pos = vec2(3.0, -1.0);</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  if (gl_VertexID == 2) pos = vec2(-1.0, 3.0);</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  v_uv = pos * 0.5 + 0.5;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  gl_Position = vec4(pos, 0.0, 1.0);</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> fragment_src <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;#version 330 core</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;in vec2 v_uv;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;out vec4 fragColor;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;uniform sampler2D u_texture;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;void main() {</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;  fragColor = texture(u_texture, uv);</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLuint vs <span style="color:#f92672">=</span> compile_shader(GL_VERTEX_SHADER, vertex_src);
+</span></span><span style="display:flex;"><span>    GLuint fs <span style="color:#f92672">=</span> compile_shader(GL_FRAGMENT_SHADER, fragment_src);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLuint program <span style="color:#f92672">=</span> glCreateProgram();
+</span></span><span style="display:flex;"><span>    glAttachShader(program, vs);
+</span></span><span style="display:flex;"><span>    glAttachShader(program, fs);
+</span></span><span style="display:flex;"><span>    glLinkProgram(program);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLint ok <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    glGetProgramiv(program, GL_LINK_STATUS, <span style="color:#f92672">&amp;</span>ok);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ok) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">char</span> log[<span style="color:#ae81ff">1024</span>];
+</span></span><span style="display:flex;"><span>        glGetProgramInfoLog(program, <span style="color:#66d9ef">sizeof</span>(log), <span style="color:#66d9ef">nullptr</span>, log);
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>fprintf(stderr, <span style="color:#e6db74">&#34;Program link error: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, log);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    glDeleteShader(vs);
+</span></span><span style="display:flex;"><span>    glDeleteShader(fs);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> program;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#75715e">// namespace
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    glfwSetErrorCallback(error_callback);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>glfwInit()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLFWwindow<span style="color:#f92672">*</span> window <span style="color:#f92672">=</span> glfwCreateWindow(kBufferWidth, kBufferHeight, <span style="color:#e6db74">&#34;Space Invaders&#34;</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window) {
+</span></span><span style="display:flex;"><span>        glfwTerminate();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    glfwMakeContextCurrent(window);
+</span></span><span style="display:flex;"><span>    glfwSwapInterval(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    glfwSetKeyCallback(window, key_callback);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    glewExperimental <span style="color:#f92672">=</span> GL_TRUE;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (glewInit() <span style="color:#f92672">!=</span> GLEW_OK) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>fprintf(stderr, <span style="color:#e6db74">&#34;Failed to initialize GLEW</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        glfwDestroyWindow(window);
+</span></span><span style="display:flex;"><span>        glfwTerminate();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Buffer buffer{kBufferWidth, kBufferHeight, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(kBufferWidth <span style="color:#f92672">*</span> kBufferHeight)};
+</span></span><span style="display:flex;"><span>    init_sprites();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLuint vao <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    glGenVertexArrays(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>vao);
+</span></span><span style="display:flex;"><span>    glBindVertexArray(vao);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLuint program <span style="color:#f92672">=</span> create_program();
+</span></span><span style="display:flex;"><span>    glUseProgram(program);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    GLuint texture <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    glGenTextures(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>texture);
+</span></span><span style="display:flex;"><span>    glBindTexture(GL_TEXTURE_2D, texture);
+</span></span><span style="display:flex;"><span>    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+</span></span><span style="display:flex;"><span>    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+</span></span><span style="display:flex;"><span>    glTexImage2D(GL_TEXTURE_2D, <span style="color:#ae81ff">0</span>, GL_RGBA, buffer.width, buffer.height, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                 GL_RGBA, GL_UNSIGNED_BYTE, buffer.data.data());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Game game{};
+</span></span><span style="display:flex;"><span>    init_game(game);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> last_time <span style="color:#f92672">=</span> glfwGetTime();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> accumulator <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> dt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">60.0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>glfwWindowShouldClose(window)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> now <span style="color:#f92672">=</span> glfwGetTime();
+</span></span><span style="display:flex;"><span>        accumulator <span style="color:#f92672">+=</span> (now <span style="color:#f92672">-</span> last_time);
+</span></span><span style="display:flex;"><span>        last_time <span style="color:#f92672">=</span> now;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (accumulator <span style="color:#f92672">&gt;=</span> dt) {
+</span></span><span style="display:flex;"><span>            update_game(game);
+</span></span><span style="display:flex;"><span>            accumulator <span style="color:#f92672">-=</span> dt;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        render_game(buffer, game);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        glTexSubImage2D(GL_TEXTURE_2D, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, buffer.width, buffer.height,
+</span></span><span style="display:flex;"><span>                        GL_RGBA, GL_UNSIGNED_BYTE, buffer.data.data());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        glClear(GL_COLOR_BUFFER_BIT);
+</span></span><span style="display:flex;"><span>        glDrawArrays(GL_TRIANGLES, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        glfwSwapBuffers(window);
+</span></span><span style="display:flex;"><span>        glfwPollEvents();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    glDeleteTextures(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>texture);
+</span></span><span style="display:flex;"><span>    glDeleteProgram(program);
+</span></span><span style="display:flex;"><span>    glDeleteVertexArrays(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>vao);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    glfwDestroyWindow(window);
+</span></span><span style="display:flex;"><span>    glfwTerminate();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+        </div>
+        <a href="./code.html" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="./report.html" class="color-inherit dim link">
+            Отчет по вариативной части
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <h1 id="отчет-по-вариативной-части-практики-реализация-игры-space-invaders">Отчет по вариативной части практики: Реализация игры Space Invaders</h1>
+<h2 id="1-общая-информация">1. Общая информация</h2>
+<p><strong>Тема задания:</strong> Практическая реализация технологии «Build Your Own X» (из списка CodeCrafters).
+<strong>Выбранный проект:</strong> Создание игры Space Invaders «с нуля» на C++ и OpenGL.
+<strong>Стек технологий:</strong></p>
+<ul>
+<li><strong>Язык:</strong> C++ (стандарт C++17).</li>
+<li><strong>Компилятор:</strong> g++ (MinGW-w64).</li>
+<li><strong>Система сборки:</strong> CMake.</li>
+<li><strong>Библиотеки:</strong> GLFW 3.4 (управление окнами и вводом), GLEW 2.3.1 (доступ к расширениям OpenGL).</li>
+<li><strong>ОС:</strong> Windows.</li>
+</ul>
+<hr>
+<h2 id="2-цели-и-задачи">2. Цели и задачи</h2>
+<p>Основная цель — изучение низкоуровневых принципов работы графических приложений и игровой логики без использования готовых игровых движков.</p>
+        </div>
+        <a href="./report.html" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+      </section>
+
+      
+
+    </div>
+  
+
+    </main>
+    <footer class="bg-dark-blue bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="./index.html" >
+    &copy;  Space Invaders - Variative Report 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

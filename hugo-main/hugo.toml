@@ -1,0 +1,35 @@
+baseURL = ''
+languageCode = 'ru-ru'
+title = 'Project SpaceWolf'
+publishDir = '../site/main-site'
+relativeURLs = true
+canonifyURLs = true
+uglyURLs = true
+theme = 'ananke'
+
+[menu]
+  [[menu.main]]
+    name = 'Главная'
+    url = '/index.html'
+    weight = 10
+  [[menu.main]]
+    name = 'О проекте'
+    url = '/about.html'
+    weight = 20
+  [[menu.main]]
+    name = 'Участники'
+    url = '/participants.html'
+    weight = 30
+  [[menu.main]]
+    name = 'Журнал'
+    url = '/post/index.html'
+    weight = 40
+  [[menu.main]]
+    name = 'Ресурсы'
+    url = '/resources.html'
+    weight = 50
+
+[params]
+  description = "Космический шутер, вдохновленный StarFox"
+  background_color_class = "bg-black"
+  recent_posts_number = 3

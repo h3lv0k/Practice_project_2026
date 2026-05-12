@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru-ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техническое руководство | Space Invaders - Practice Project</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Space Invaders - Practice Project</h1>
+        <nav>
+            <ul>
+                
+                <li><a href="./index.html">Главная</a></li>
+                
+                <li><a href="./report.html">Отчет</a></li>
+                
+                <li><a href="./guide.html">Гайд</a></li>
+                
+                <li><a href="./code.html">Код</a></li>
+                
+                <li><a href="./journal.html">Журнал</a></li>
+                
+                <li><a href="./resources.html">Ресурсы</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <h1>Техническое руководство</h1>
+    <h1 id="space-invaders-from-scratch-copengl---подробный-гайд">Space Invaders from Scratch (C++/OpenGL) - Подробный гайд</h1>
+<h2 id="цель">Цель</h2>
+<p>В этом документе описана последовательная реализация Space Invaders по серии из пяти статей. Реализация выполнена на Windows с CMake, C++ и библиотеками GLFW + GLEW, с CPU-буфером и выводом через OpenGL.</p>
+<h2 id="требования">Требования</h2>
+<ul>
+<li>Windows</li>
+<li>g++ (MinGW)</li>
+<li>CMake 3.16+</li>
+<li>Библиотеки:
+<ul>
+<li>GLFW 3.4 (уже размещена в src)</li>
+<li>GLEW 2.3.1 (уже размещена в src)</li>
+</ul>
+</li>
+</ul>
+<h2 id="сборка-и-запуск">Сборка и запуск</h2>
+<ol>
+<li>Создайте папку build внутри src.</li>
+<li>Откройте терминал и выполните:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd practice-project/src
+</span></span><span style="display:flex;"><span>cmake -S . -B build
+</span></span><span style="display:flex;"><span>cmake --build build --config Release
+</span></span></code></pre></div><ol start="3">
+<li>Запуск:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./build/space_invaders.exe
+</span></span></code></pre></div><p>После сборки DLL-файлы GLFW и GLEW копируются рядом с exe автоматически.</p>
+<h2 id="общая-архитектура">Общая архитектура</h2>
+<p>Игра реализуется в одном файле, чтобы строго следовать структуре туториала. Основные элементы:</p>
+<ul>
+<li>Буфер отрисовки (массив пикселей uint32_t)</li>
+<li>Простые спрайты (bitmap 0/1)</li>
+<li>Игровые структуры: Player, Alien, Bullet, Game</li>
+<li>Рендер через OpenGL текстуру и полноэкранный треугольник</li>
+<li>Фиксированный timestep 60 FPS</li>
+</ul>
+<h2 id="часть-1-окно-и-базовый-цикл">Часть 1. Окно и базовый цикл</h2>
+<p>Цель: создать окно, инициализировать OpenGL и запустить цикл.</p>
+<ul>
+<li>Инициализация GLFW</li>
+<li>Создание окна 640x480</li>
+<li>Инициализация GLEW</li>
+<li>Базовый цикл: clear → swap → poll</li>
+<li>Включение V-sync</li>
+</ul>
+<h2 id="часть-2-cpu-буфер-и-вывод-через-opengl">Часть 2. CPU-буфер и вывод через OpenGL</h2>
+<p>Цель: отрисовывать пиксели в CPU-буфере и выводить его на экран.</p>
+<ul>
+<li>Создается Buffer с массивом пикселей</li>
+<li>Пишется шейдерная программа (Vertex + Fragment)</li>
+<li>Буфер отправляется как текстура</li>
+<li>Используется fullscreen-треугольник</li>
+<li>Реализуется функция очистки буфера</li>
+</ul>
+<h2 id="часть-3-игровые-объекты-и-анимация">Часть 3. Игровые объекты и анимация</h2>
+<p>Цель: добавить структуры объектов и спрайты.</p>
+<ul>
+<li>Определяются Sprite, Player, Alien</li>
+<li>Создаются таблицы спрайтов для нескольких типов инопланетян</li>
+<li>Добавляется анимация (переключение кадров)</li>
+<li>Инициализируется сетка 5x11 инопланетян</li>
+<li>Добавляется игрок в нижней части экрана</li>
+</ul>
+<h2 id="часть-4-ввод-и-коллизии">Часть 4. Ввод и коллизии</h2>
+<p>Цель: сделать игру интерактивной.</p>
+<ul>
+<li>Обработка клавиш: Left/Right/Space/Escape</li>
+<li>Игрок двигается по X, ограничен границами экрана</li>
+<li>Пули создаются при отпускании Space</li>
+<li>Проверка пересечений (AABB)</li>
+<li>Инопланетяне уничтожаются при попадании, показывается спрайт смерти</li>
+</ul>
+<h2 id="часть-5-скоринг-и-ui">Часть 5. Скоринг и UI</h2>
+<p>Цель: добавить счет и текстовый вывод.</p>
+<ul>
+<li>Реализован 5x7 ASCII шрифт</li>
+<li>Функции вывода текста и чисел в буфер</li>
+<li>Очки начисляются за типы инопланетян</li>
+<li>Выводится строка SCORE, значение очков и CREDIT 00</li>
+<li>Рисуется разделительная линия</li>
+</ul>
+<h2 id="итог">Итог</h2>
+<p>Игра полностью воспроизводит все этапы из серии туториалов. Эта реализация является базой для дальнейших улучшений (движение рядов, волны, враги, звук).</p>
+
+
+    </main>
+    <footer>
+        &copy; 2026 Проектная практика. Все права защищены.
+    </footer>
+</body>
+</html>

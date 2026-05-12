@@ -1,0 +1,26 @@
+baseURL = ''
+languageCode = 'ru-ru'
+title = 'Space Invaders - Variative Report'
+theme = 'ananke'
+publishDir = '../site/var_site'
+relativeURLs = true
+canonifyURLs = true
+uglyURLs = true
+
+[menu]
+  [[menu.main]]
+    name = 'Главная'
+    url = '/index.html'
+    weight = 10
+  [[menu.main]]
+    name = 'Отчет'
+    url = '/report.html'
+    weight = 20
+  [[menu.main]]
+    name = 'Исходный код'
+    url = '/code.html'
+    weight = 30
+
+[params]
+  description = "Реализация игры Space Invaders на C++ и OpenGL"
+  background_color_class = "bg-dark-blue"

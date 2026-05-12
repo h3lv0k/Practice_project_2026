@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project SpaceWolf</title>
+    <link>/index.html</link>
+    <description>Recent content on Project SpaceWolf</description>
+    <generator>Hugo</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Mon, 20 Apr 2026 12:00:00 +0300</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Проектирование миров: Древние узлы и Станции</title>
+      <link>/post/post-3.html</link>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 +0300</pubDate>
+      <guid>/post/post-3.html</guid>
+      <description>&lt;p&gt;Завершено детальное описание двух уровней. Мы внедрили смену игровых режимов (On-rails и All-range), чтобы разнообразить геймплей. Проработаны визуальные референсы для Уровня 3 в стиле киберпанка и индустриальный стиль для Космической Станции.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Дизайн противников: От «Ската» до «Бутона»</title>
+      <link>/post/post-2.html</link>
+      <pubDate>Thu, 02 Apr 2026 12:00:00 +0300</pubDate>
+      <guid>/post/post-2.html</guid>
+      <description>&lt;p&gt;Проведена большая работа по проектированию врагов. Основная задача заключалась в том, чтобы сделать каждого противника «головоломкой», требующей определенного действия или оружия. Особое внимание уделили Тентаклю и его взаимодействию с Charge Shot.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Начало пути: Исследование референсов</title>
+      <link>/post/post-1.html</link>
+      <pubDate>Sun, 15 Mar 2026 12:00:00 +0300</pubDate>
+      <guid>/post/post-1.html</guid>
+      <description>&lt;p&gt;На первом этапе мы определились с жанром и основным источником вдохновения — серией &lt;em&gt;StarFox&lt;/em&gt;. Были изучены ключевые механики on-rails шутеров: движение камеры, зоны обстрела и система Barrel Roll. Сформирован общий концепт «Космического Волка».&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>О проекте</title>
+      <link>/about.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/about.html</guid>
+      <description>&lt;h2 id=&#34;описание-проекта-spacewolf&#34;&gt;Описание проекта SpaceWolf&lt;/h2&gt;&#xA;&lt;p&gt;Проект SpaceWolf — это современное переосмысление жанра on-rails shooter. Мы фокусируемся на создании сложных паттернов поведения врагов и интерактивного окружения.&lt;/p&gt;&#xA;&lt;h3 id=&#34;разработка-противников&#34;&gt;Разработка противников&lt;/h3&gt;&#xA;&lt;p&gt;В проекте представлено несколько типов уникальных противников, каждый из которых требует своей тактики:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Корабль «Скат»&lt;/strong&gt;: Выпускает широкую энергетическую волну. Уязвим в области боковых орудий во время подготовки залпа.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Тентакль&lt;/strong&gt;: Бронированный враг, реагирующий только на заряженные выстрелы (Charge Shot).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Рой (мошки)&lt;/strong&gt;: Группа мелких врагов, мешающих обзору. Сбрасываются выполнением «бочки» (Barrel Roll).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Тандемные двойники&lt;/strong&gt;: Два истребителя, связанных лучом. При уничтожении одного второй впадает в ярость.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Бутон-снайпер&lt;/strong&gt;: Бронированный шар, раскрывающийся только для выстрела.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;разработка-уровней&#34;&gt;Разработка уровней&lt;/h3&gt;&#xA;&lt;p&gt;Мы спроектировали несколько уровней с уникальными игровыми ситуациями:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ресурсы</title>
+      <link>/resources.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/resources.html</guid>
+      <description>&lt;h2 id=&#34;полезные-материалы&#34;&gt;Полезные материалы&lt;/h2&gt;&#xA;&lt;p&gt;Для разработки проекта и документации мы использовали следующие ресурсы:&lt;/p&gt;&#xA;&lt;h3 id=&#34;технологии-и-верстка&#34;&gt;Технологии и верстка&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ru/docs/Learn_web_development/Core/CSS_layout/Introduction&#34;&gt;Введение в CSS верстку (MDN)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://habr.com/ru/articles/548898/&#34;&gt;DevTools для «чайников» (Habr)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ru/docs/Web/HTML/Element&#34;&gt;Элементы HTML (MDN)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/ru/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content&#34;&gt;Основы HTML (MDN)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://doka.guide/&#34;&gt;Doka.guide — Справочник по веб-технологиям&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;инструменты-и-обучение&#34;&gt;Инструменты и обучение&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://git-scm.com/book/ru/v2&#34;&gt;Официальная документация Git&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://skillbox.ru/media/code/chto_takoe_git_obyasnyaem_na_skhemakh/&#34;&gt;Что такое Git: объясняем на схемах&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://ru.hexlet.io/courses/intro_to_git&#34;&gt;Бесплатный курс по Git на Hexlet&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://ru.hexlet.io/lesson_filters/markdown&#34;&gt;Уроки по Markdown на Hexlet&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;референсы&#34;&gt;Референсы&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Генератор статических сайтов Hugo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://starfox.fandom.com/wiki/Star_Fox_Wiki&#34;&gt;StarFox Wiki&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Участники</title>
+      <link>/participants.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/participants.html</guid>
+      <description>&lt;h2 id=&#34;команда-проекта-spacewolf&#34;&gt;Команда проекта SpaceWolf&lt;/h2&gt;&#xA;&lt;p&gt;Над проектом работала группа геймдизайнеров:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Филиппов Демьян Олегович&lt;/strong&gt; (группа 241-337) — Лид-геймдизайнер.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Прудников Павел Ильич&lt;/strong&gt; (группа 241-337) — Геймдизайнер.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Пугина Елизавета Сергеевна&lt;/strong&gt; (группа 251-231) — Геймдизайнер.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Пронякин Роман Вадимович&lt;/strong&gt; (группа 251-331) — Геймдизайнер.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;личный-вклад-пронякин-роман-вадимович&#34;&gt;Личный вклад: Пронякин Роман Вадимович&lt;/h3&gt;&#xA;&lt;p&gt;В рамках проекта я отвечал за следующие ключевые аспекты:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Проектирование противников&lt;/strong&gt;:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Разработка механик для 5 типов врагов (Скат, Тентакль, Рой, Тандемные двойники, Бутон-снайпер).&lt;/li&gt;&#xA;&lt;li&gt;Определение уязвимых мест и тактик противодействия.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Дизайн уровней&lt;/strong&gt;:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Полная проработка концепции и фаз прохождения для Уровня 2 (Космическая станция) и Уровня 3 (Древний узел связи).&lt;/li&gt;&#xA;&lt;li&gt;Создание сценариев «сюжетных поворотов» внутри геймплея (например, пробуждение Механического Червя).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>

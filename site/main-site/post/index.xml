@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Project SpaceWolf</title>
+    <link>/post/index.html</link>
+    <description>Recent content in Posts on Project SpaceWolf</description>
+    <generator>Hugo</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Mon, 20 Apr 2026 12:00:00 +0300</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Проектирование миров: Древние узлы и Станции</title>
+      <link>/post/post-3.html</link>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 +0300</pubDate>
+      <guid>/post/post-3.html</guid>
+      <description>&lt;p&gt;Завершено детальное описание двух уровней. Мы внедрили смену игровых режимов (On-rails и All-range), чтобы разнообразить геймплей. Проработаны визуальные референсы для Уровня 3 в стиле киберпанка и индустриальный стиль для Космической Станции.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Дизайн противников: От «Ската» до «Бутона»</title>
+      <link>/post/post-2.html</link>
+      <pubDate>Thu, 02 Apr 2026 12:00:00 +0300</pubDate>
+      <guid>/post/post-2.html</guid>
+      <description>&lt;p&gt;Проведена большая работа по проектированию врагов. Основная задача заключалась в том, чтобы сделать каждого противника «головоломкой», требующей определенного действия или оружия. Особое внимание уделили Тентаклю и его взаимодействию с Charge Shot.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Начало пути: Исследование референсов</title>
+      <link>/post/post-1.html</link>
+      <pubDate>Sun, 15 Mar 2026 12:00:00 +0300</pubDate>
+      <guid>/post/post-1.html</guid>
+      <description>&lt;p&gt;На первом этапе мы определились с жанром и основным источником вдохновения — серией &lt;em&gt;StarFox&lt;/em&gt;. Были изучены ключевые механики on-rails шутеров: движение камеры, зоны обстрела и система Barrel Roll. Сформирован общий концепт «Космического Волка».&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

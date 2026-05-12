@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Space Invaders - Variative Report</title>
+    <link>/tags/index.html</link>
+    <description>Recent content in Tags on Space Invaders - Variative Report</description>
+    <generator>Hugo</generator>
+    <language>ru-ru</language>
+    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

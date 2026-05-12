@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>{{ .Site.Title }}</h1>
+        <nav>
+            <ul>
+                {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    <footer>
+        &copy; 2026 Проектная практика. Все права защищены.
+    </footer>
+</body>
+</html>
