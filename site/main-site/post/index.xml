@@ -13,21 +13,21 @@
       <link>/post/post-3.html</link>
       <pubDate>Mon, 20 Apr 2026 12:00:00 +0300</pubDate>
       <guid>/post/post-3.html</guid>
-      <description>&lt;p&gt;Завершено детальное описание двух уровней. Мы внедрили смену игровых режимов (On-rails и All-range), чтобы разнообразить геймплей. Проработаны визуальные референсы для Уровня 3 в стиле киберпанка и индустриальный стиль для Космической Станции.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Завершено детальное описание двух уровней. Мы внедрили смену игровых режимов (On-rails и All-range), чтобы разнообразить геймплей. Проработаны визуальные референсы для Уровня 3 в стиле киберпанка и индустриальный стиль для Космической Станции.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;../images/lvlConcepts2.png&#34; alt=&#34;Level Concepts&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Дизайн противников: От «Ската» до «Бутона»</title>
       <link>/post/post-2.html</link>
       <pubDate>Thu, 02 Apr 2026 12:00:00 +0300</pubDate>
       <guid>/post/post-2.html</guid>
-      <description>&lt;p&gt;Проведена большая работа по проектированию врагов. Основная задача заключалась в том, чтобы сделать каждого противника «головоломкой», требующей определенного действия или оружия. Особое внимание уделили Тентаклю и его взаимодействию с Charge Shot.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Проведена большая работа по проектированию врагов. Основная задача заключалась в том, чтобы сделать каждого противника «головоломкой», требующей определенного действия или оружия. Особое внимание уделили Тентаклю и его взаимодействию с Charge Shot.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;../images/GunConcept.png&#34; alt=&#34;Gun Concept&#34;&gt;&#xA;&lt;img src=&#34;../images/BossConcept.png&#34; alt=&#34;Boss Concept&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Начало пути: Исследование референсов</title>
       <link>/post/post-1.html</link>
       <pubDate>Sun, 15 Mar 2026 12:00:00 +0300</pubDate>
       <guid>/post/post-1.html</guid>
-      <description>&lt;p&gt;На первом этапе мы определились с жанром и основным источником вдохновения — серией &lt;em&gt;StarFox&lt;/em&gt;. Были изучены ключевые механики on-rails шутеров: движение камеры, зоны обстрела и система Barrel Roll. Сформирован общий концепт «Космического Волка».&lt;/p&gt;</description>
+      <description>&lt;p&gt;На первом этапе мы определились с жанром и основным источником вдохновения — серией &lt;em&gt;StarFox&lt;/em&gt;. Были изучены ключевые механики on-rails шутеров: движение камеры, зоны обстрела и система Barrel Roll. Сформирован общий концепт «Космического Волка».&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;../images/StarFoxReference.jpg&#34; alt=&#34;StarFox Reference&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

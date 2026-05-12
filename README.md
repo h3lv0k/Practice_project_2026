@@ -18,7 +18,7 @@
 [**C++**: _Space Invaders from Scratch_](http://nicktasios.nl/posts/space-invaders-from-scratch-part-1.html)
 * Реализация находиться в **src/...**
 * Гайд-файл "byox-guide.md" размещен в **docs/...**
-* Сайт по вариативной части по пути **site/var_site/...**
+* Сайт по вариативной части по пути **site/var-site/...**
     * Реализован на основе Hugo (исходники в hugo-var)
 
 ## Ответственный по проектной (учебной) практике

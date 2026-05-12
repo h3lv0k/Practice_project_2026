@@ -15,5 +15,5 @@ featured_image: "/images/gameplay.png"
 - Дизайн многоуровневых локаций с различными фазами прохождения.
 - Создание атмосферного визуального стиля в духе научной фантастики.
 
-![StarFox Inspiration](https://upload.wikimedia.org/wikipedia/en/5/52/Star_Fox_SNES_box_art.jpg)
-*(Заглушка: референс визуального стиля)*
+![StarFox Inspiration](/images/StarFoxReference.jpg)
+*(Референс визуального стиля)*
